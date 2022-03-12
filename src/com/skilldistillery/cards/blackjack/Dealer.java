@@ -33,6 +33,20 @@ public class Dealer {
 		return true;
 
 	}
+	
+	public void dealHand(Player player1) {
+		getDeck().dealCard(getDealerHand());
+		getDeck().dealCard(player1.getPlayerHand());
+		getDeck().dealCard(getDealerHand());
+		getDeck().dealCard(player1.getPlayerHand());
+
+	}
+	
+	public boolean checkForBlackJack(Player player1) {
+		
+		return (checkCards(getDealerHand()) || checkCards(player1.getPlayerHand()));
+
+	}
 
 	public boolean checkCards(BlackJackHand hand) {
 		
@@ -56,37 +70,6 @@ public class Dealer {
 
 	}
 
-	public boolean playAgain(Scanner kb, MenuBuilder playAgainMenu) {
-		boolean playAgain = false;
-		boolean tryAgain;
-		int userInput = 0;
-		do {
-			tryAgain = false;
-			playAgainMenu.printMenu();
-			try {
-				userInput = kb.nextInt();
-			} catch (InputMismatchException e) {
-				userInput = 0;
-			}
-			kb.nextLine();
-
-			switch (userInput) {
-			case (1):
-				playAgain = true;
-				break;
-			case (2):
-				break;
-			default:
-				if (!tryAgain) {
-					System.err.println("Invalid selection");
-					tryAgain = true;
-				}
-			}
-		} while (tryAgain);
-
-		return playAgain;
-
-	}
 	
 	public void declareWinner(Player player1) {
 		boolean playerWins = false;
@@ -130,6 +113,38 @@ public class Dealer {
 		System.out.println();
 	}
 
+	public boolean playAgain(Scanner kb, MenuBuilder playAgainMenu) {
+		boolean playAgain = false;
+		boolean tryAgain;
+		int userInput = 0;
+		do {
+			tryAgain = false;
+			playAgainMenu.printMenu();
+			try {
+				userInput = kb.nextInt();
+			} catch (InputMismatchException e) {
+				userInput = 0;
+			}
+			kb.nextLine();
+			
+			switch (userInput) {
+			case (1):
+				playAgain = true;
+			break;
+			case (2):
+				break;
+			default:
+				if (!tryAgain) {
+					System.err.println("Invalid selection");
+					tryAgain = true;
+				}
+			}
+		} while (tryAgain);
+		
+		return playAgain;
+		
+	}
+	
 	public String toString() {
 
 		StringBuilder dealerCardsToShow = new StringBuilder();
@@ -140,5 +155,4 @@ public class Dealer {
 		return dealerCardsToShow.toString();
 
 	}
-
 }

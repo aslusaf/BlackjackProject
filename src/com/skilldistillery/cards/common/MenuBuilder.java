@@ -292,31 +292,35 @@ public class MenuBuilder {
 		this.bannerSize = bannerSize;
 		this.wrapperOption = wrapperOption;
 		addBannerWrapper(wrapperOption);
-		int leftInsideSpacing = (bannerSize - fullBannerTitle.length()) / 2;
-		int rightInsideSpacing = (bannerSize - fullBannerTitle.length()) / 2;
-		int fullBannerLength = fullBannerTitle.length() + leftInsideSpacing + rightInsideSpacing;
-
+		
+		
 		if (bannerSize < fullBannerTitle.length()) {
 			System.out.println("The banner size is too small for the given title.");
 			System.out.println("Use a larger banner preset, or enter a custom size (i.e. 120, 150, etc.)");
 			return;
 		}
+		
+		
+		int leftInsideSpacing = (bannerSize - fullBannerTitle.length()) / 2;
+		int rightInsideSpacing = (bannerSize - fullBannerTitle.length()) / 2;
+		int fullBannerLength = fullBannerTitle.length() + leftInsideSpacing + rightInsideSpacing;
+
 
 		if ((fullBannerLength) % bannerSize != 0)
 			rightInsideSpacing += 1;
 
-		System.out.print("\u250c");
+		System.out.print(" \u250c");
 		for (int i = 0; i < bannerSize; i++)
 			System.out.print("\u2500");
 		System.out.println("\u2510");
-		System.out.print("\u2502");
+		System.out.print(" \u2502");
 		for (int i = 0; i < leftInsideSpacing; i++)
 			System.out.print(" ");
 		System.out.print(fullBannerTitle);
 		for (int i = 0; i < rightInsideSpacing; i++)
 			System.out.print(" ");
 		System.out.println("\u2502");
-		System.out.print("\u2514");
+		System.out.print(" \u2514");
 		for (int i = 0; i < bannerSize; i++)
 			System.out.print("\u2500");
 		System.out.println("\u2518");
