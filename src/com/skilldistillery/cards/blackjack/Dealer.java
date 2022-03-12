@@ -1,6 +1,7 @@
 package com.skilldistillery.cards.blackjack;
 
 import com.skilldistillery.cards.common.Deck;
+import com.skilldistillery.cards.common.MenuBuilder;
 
 public class Dealer {
 
@@ -20,20 +21,46 @@ public class Dealer {
 		return deck;
 	}
 
+	public void hitOrStay() {
+
+		while (dealerHand.getHandValue() < 17) {
+			deck.dealCard(dealerHand);
+		}
+
+	}
+
+	public void declareWinner(Player player1) {
+		MenuBuilder mb = new MenuBuilder();
+		mb.printBanner("Winner", "XL", 1);
+		mb.printBanner(showHand(), "XL");
+		mb.printBanner("Loser", "XL");
+		mb.printBanner(player1.toString(), "XL");
+		System.out.println("Inside declare winner!");
+		System.out.println();
+	}
+
+	public String showHand() {
+		
+		StringBuilder dealerCardsToShow = new StringBuilder();
+
+		dealerCardsToShow.append("Dealer: " + dealerHand.getHandValue() + " | ");
+
+		for (int i = 0; i < dealerHand.getHand().size(); i++) {
+			dealerCardsToShow.append(dealerHand.getHand().get(i).toString());
+			String punctuation = (dealerHand.getHand().size() - 1 == i) ? "." : ", ";
+			dealerCardsToShow.append(punctuation);
+		}
+
+		return dealerCardsToShow.toString();
+
+	}
+
 	public String toString() {
 
 		StringBuilder dealerCardsToShow = new StringBuilder();
-		
-		dealerCardsToShow.append("Dealer: ?  | ");
-//		dealerCardsToShow.append(dealerHand.getHandValue() + " | ");
 
-		if (dealerHand.getHand().size() > 1) {
-			for (int i = 1; i < dealerHand.getHand().size(); i++) {
-				dealerCardsToShow.append(dealerHand.getHand().get(i).toString());
-			}
-		} else {
-			dealerCardsToShow.append("There are no cards for the dealer to show.");
-		}
+		dealerCardsToShow.append("Dealer: ? | ");
+		dealerCardsToShow.append(dealerHand.getHand().get(1).toString() + ".");
 
 		return dealerCardsToShow.toString();
 

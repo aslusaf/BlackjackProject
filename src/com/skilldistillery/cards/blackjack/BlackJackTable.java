@@ -1,6 +1,7 @@
 package com.skilldistillery.cards.blackjack;
 
 import com.skilldistillery.cards.common.Deck;
+import com.skilldistillery.cards.common.MenuBuilder;
 
 public class BlackJackTable {
 	Deck deck = new Deck();
@@ -8,9 +9,10 @@ public class BlackJackTable {
 	Player player1 = new Player();
 
 	public void displayCards() {
-
-		System.out.println(dealer.toString());
-		System.out.println(player1.toString());
+		MenuBuilder mb = new MenuBuilder();
+		mb.printBanner(dealer.toString(), "XL");
+		mb.printBanner(player1.toString(), "XL");
+		System.out.println();
 
 	}
 }

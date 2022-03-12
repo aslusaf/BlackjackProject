@@ -6,8 +6,10 @@ package com.skilldistillery.cards.common;
 public class MenuBuilder {
 
 	private String menuTitle;
+	private String bannerTitle;
 	private String fullMenuTitle;
 	private String fullBannerTitle;
+	private String fullMenu;
 	private int numberOfOptions;
 	private int menuSize = 0;
 	private int bannerSize = 0;
@@ -89,7 +91,7 @@ public class MenuBuilder {
 		this.wrapperOption = wrapperOption;
 		bannerWrapper = getWrapper(wrapperOption);
 
-		sbBanner.delete(0, sbBanner.length()).append(bannerWrapper).reverse().append(menuTitle).append(bannerWrapper);
+		sbBanner.delete(0, sbBanner.length()).append(bannerWrapper).reverse().append(bannerTitle).append(bannerWrapper);
 
 		fullBannerTitle = sbBanner.toString();
 
@@ -131,11 +133,15 @@ public class MenuBuilder {
 	}
 
 	public void printMenu() {
-		addTitleWrapper(wrapperOption);
-		topOfMenu();
-		centerOfMenu();
-		bottomOfMenu();
-		System.out.println(sbMenu);
+
+		if (fullMenu == null) {
+			addTitleWrapper(wrapperOption);
+			topOfMenu();
+			centerOfMenu();
+			bottomOfMenu();
+			fullMenu = sbMenu.toString();
+		}
+		System.out.println(fullMenu);
 		System.out.print("  " + inputPromptCharacter);
 	}
 
@@ -242,7 +248,9 @@ public class MenuBuilder {
 
 	public void printBanner(String bannerTitle) {
 
+		this.bannerTitle = bannerTitle;
 		this.bannerSize = collectSize("M");
+		this.wrapperOption = 0;
 
 		printBanner(bannerTitle, bannerSize, wrapperOption);
 
@@ -250,7 +258,9 @@ public class MenuBuilder {
 
 	public void printBanner(String bannerTitle, String size) {
 
+		this.bannerTitle = bannerTitle;
 		this.bannerSize = collectSize(size);
+		this.wrapperOption = 0;
 
 		printBanner(bannerTitle, bannerSize, wrapperOption);
 
@@ -258,6 +268,7 @@ public class MenuBuilder {
 
 	public void printBanner(String bannerTitle, String size, int wrapperOption) {
 
+		this.bannerTitle = bannerTitle;
 		this.bannerSize = collectSize(size);
 		this.wrapperOption = wrapperOption;
 
@@ -267,7 +278,9 @@ public class MenuBuilder {
 
 	public void printBanner(String bannerTitle, int bannerSize) {
 
+		this.bannerTitle = bannerTitle;
 		this.bannerSize = bannerSize;
+		this.wrapperOption = 0;
 
 		printBanner(bannerTitle, bannerSize, wrapperOption);
 
@@ -275,6 +288,7 @@ public class MenuBuilder {
 
 	public void printBanner(String bannerTitle, int bannerSize, int wrapperOption) {
 
+		this.bannerTitle = bannerTitle;
 		this.bannerSize = bannerSize;
 		this.wrapperOption = wrapperOption;
 		addBannerWrapper(wrapperOption);

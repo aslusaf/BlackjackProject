@@ -1,7 +1,5 @@
 package com.skilldistillery.cards.blackjack;
 
-import com.skilldistillery.cards.common.MenuBuilder;
-
 public class Player {
 
 	private BlackJackHand playerHand;
