@@ -9,7 +9,7 @@ public class BlackJackApp {
 	public static void main(String[] args) {
 
 		BlackJackTable table = new BlackJackTable();
-		MenuBuilder playAgainMenu = new MenuBuilder("Would you like to play again?", "M", 2);
+		MenuBuilder playAgainMenu = new MenuBuilder("Would you like to keep playing?", "M", 2);
 		playAgainMenu.addMenuOptions("Yes", "No");
 		MenuBuilder mb = new MenuBuilder("What would you like to do?", "M", 2);
 		mb.addMenuOptions("Hit", "Stay");
@@ -28,8 +28,8 @@ public class BlackJackApp {
 			playAgain = table.playAgain(kb, playAgainMenu);
 
 		} while (playAgain);
-		
-		mb.printBanner("Goodbye!");
+
+		mb.printBanner("Goodbye!", "L");
 
 		kb.close();
 

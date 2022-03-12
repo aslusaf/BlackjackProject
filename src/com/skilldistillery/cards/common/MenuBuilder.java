@@ -15,6 +15,7 @@ public class MenuBuilder {
 	private int bannerSize = 0;
 	private int borderSize = 0;
 	private int wrapperOption = 0;
+	private int breakBarSize = 0;
 	private String titleWrapper;
 	private String bannerWrapper;
 	private String leftTitleWrapperOption;
@@ -292,19 +293,18 @@ public class MenuBuilder {
 		this.bannerSize = bannerSize;
 		this.wrapperOption = wrapperOption;
 		addBannerWrapper(wrapperOption);
-		
-		
+
 		if (bannerSize < fullBannerTitle.length()) {
-			System.out.println("The banner size is too small for the given title.");
-			System.out.println("Use a larger banner preset, or enter a custom size (i.e. 120, 150, etc.)");
-			return;
+
+			bannerSize = fullBannerTitle.length() + 4;
+//			System.out.println("The banner size is too small for the given title.");
+//			System.out.println("Use a larger banner preset, or enter a custom size (i.e. 120, 150, etc.)");
+//			return;
 		}
-		
-		
+
 		int leftInsideSpacing = (bannerSize - fullBannerTitle.length()) / 2;
 		int rightInsideSpacing = (bannerSize - fullBannerTitle.length()) / 2;
 		int fullBannerLength = fullBannerTitle.length() + leftInsideSpacing + rightInsideSpacing;
-
 
 		if ((fullBannerLength) % bannerSize != 0)
 			rightInsideSpacing += 1;
@@ -331,15 +331,23 @@ public class MenuBuilder {
 		return numberOfOptions;
 	}
 
-	public void autoFit() {
-		// TODO implement this method
-		// this will allow the methods to automatically resize a banner/menu title to
-		// fit
-		// in a title if the selected size is too small to fit the current title
-		// this method will set a boolean variable to true
-		// if this variable is true then the behavior of the sizing will change to make
-		// the
-		// menu size the size of the length of the title that was passed in with a
-		// buffer that makes it look good
+	public void printBreakBar(String size) {
+
+		this.breakBarSize = collectSize(size);
+		System.out.print("  ");
+		for (int i = 0; i < breakBarSize; i++)
+			System.out.print("\u2500");
+		System.out.println("\n");
+
 	}
+
+	public void printBreakBar(int size) {
+		this.breakBarSize = size;
+		System.out.print("  ");
+		for (int i = 0; i < breakBarSize; i++)
+			System.out.print("\u2500");
+		System.out.println("\n");
+
+	}
+
 }

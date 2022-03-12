@@ -33,7 +33,7 @@ public class Dealer {
 		return true;
 
 	}
-	
+
 	public void dealHand(Player player1) {
 		getDeck().dealCard(getDealerHand());
 		getDeck().dealCard(player1.getPlayerHand());
@@ -41,15 +41,15 @@ public class Dealer {
 		getDeck().dealCard(player1.getPlayerHand());
 
 	}
-	
+
 	public boolean checkForBlackJack(Player player1) {
-		
+
 		return (checkCards(getDealerHand()) || checkCards(player1.getPlayerHand()));
 
 	}
 
 	public boolean checkCards(BlackJackHand hand) {
-		
+
 		hand.getHandValue();
 		return hand.isBlackJack() || hand.isBust();
 	}
@@ -70,44 +70,43 @@ public class Dealer {
 
 	}
 
-	
 	public void declareWinner(Player player1) {
 		boolean playerWins = false;
 		MenuBuilder mb = new MenuBuilder();
-		mb.printBanner("Winner", "XL", 1);
+		mb.printBanner("Winner", "L", 1);
 
 		if (dealerHand.isBlackJack()) {
 
-			mb.printBanner(showHand(), "XL");
+			mb.printBanner(showHand(), "L");
 
 		} else if (player1.getPlayerHand().isBlackJack()) {
 
-			mb.printBanner(player1.toString(), "XL");
+			mb.printBanner(player1.toString(), "L");
 			playerWins = true;
 
 		} else if (player1.getPlayerHand().isBust()) {
 
-			mb.printBanner(showHand(), "XL");
+			mb.printBanner(showHand(), "L");
 
 		} else if (!dealerHand.isBust() && dealerHand.getHandValue() >= player1.getPlayerHand().getHandValue()) {
 
-			mb.printBanner(showHand(), "XL");
+			mb.printBanner(showHand(), "L");
 
 		} else {
 
-			mb.printBanner(player1.toString(), "XL");
+			mb.printBanner(player1.toString(), "L");
 			playerWins = true;
 		}
 
-		mb.printBanner("Loser", "XL");
+		mb.printBanner("Loser", "L");
 
 		if (playerWins) {
 
-			mb.printBanner(showHand(), "XL");
+			mb.printBanner(showHand(), "L");
 
 		} else {
 
-			mb.printBanner(player1.toString(), "XL");
+			mb.printBanner(player1.toString(), "L");
 
 		}
 		System.out.println();
@@ -122,29 +121,32 @@ public class Dealer {
 			playAgainMenu.printMenu();
 			try {
 				userInput = kb.nextInt();
+				System.out.println();
 			} catch (InputMismatchException e) {
 				userInput = 0;
 			}
 			kb.nextLine();
-			
+			System.out.println();
+			playAgainMenu.printBreakBar("L");
+
 			switch (userInput) {
 			case (1):
 				playAgain = true;
-			break;
+				break;
 			case (2):
 				break;
 			default:
 				if (!tryAgain) {
-					System.err.println("Invalid selection");
+					System.err.println("\nInvalid selection\n");
 					tryAgain = true;
 				}
 			}
 		} while (tryAgain);
-		
+
 		return playAgain;
-		
+
 	}
-	
+
 	public String toString() {
 
 		StringBuilder dealerCardsToShow = new StringBuilder();

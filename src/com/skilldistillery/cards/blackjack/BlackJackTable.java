@@ -13,8 +13,8 @@ public class BlackJackTable {
 
 	public void displayCards() {
 		MenuBuilder mb = new MenuBuilder();
-		mb.printBanner(dealer.toString(), "XL");
-		mb.printBanner(player1.toString(), "XL");
+		mb.printBanner(dealer.toString(), "L");
+		mb.printBanner(player1.toString(), "L");
 		System.out.println();
 
 	}
@@ -53,6 +53,8 @@ public class BlackJackTable {
 					userChoice = 0;
 				}
 				kb.nextLine();
+				System.out.println();
+				mb.printBreakBar("L");
 
 				switch (userChoice) {
 				case (1):
